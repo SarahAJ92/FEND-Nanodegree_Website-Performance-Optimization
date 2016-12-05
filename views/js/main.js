@@ -491,14 +491,16 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // Moves the sliding background pizzas based on scroll position
 
 var items = document.getElementsByClassName('mover');
-
+var isUpdated = false;
 function updatePositions() {
   var scrollSelection = document.body.scrollTop / 1250;
+  isUpdated = false;
   frame++;
   window.performance.mark("mark_start_frame");
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin((scrollSelection) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    var translation = items[i].basicLeft + 100 * phase;
+    items[i].style.left = translation +'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -512,21 +514,24 @@ function updatePositions() {
 }
 
 // runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
+window.addEventListener('scroll', function(){
+  if (!isUpdated){
+    isUpdated = true;
+    requestAnimationFrame(updatePositions);
+  }
+});
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 32; i++) {
+  for (var i = 0; i < 30; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
-    elem.style.height = "100px";
-    elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    document.getElementById("movingPizzas1").appendChild(elem);
   }
   updatePositions();
 });
