@@ -3,7 +3,7 @@
 ### Usage
 
 1. Clone this repository
-`$ git clone https://github.com/Wapika/frontend-nanodegree-arcade-game.git`
+`$ git clone https://github.com/Wapika/Wapika.github.io.git`
 2. Open index.html
 
 #### OR
