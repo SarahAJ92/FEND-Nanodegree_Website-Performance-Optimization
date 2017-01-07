@@ -3,12 +3,8 @@
 ### Usage
 
 1. Clone this repository
-`$ git clone https://github.com/Wapika/Wapika.github.io.git`
+`$ git clone https://github.com/MattLdwig/FEND-Nanodegree_Website-Performance-Optimization.git`
 2. Open index.html
-
-#### OR
-
-Visit the page hosted on Github -> [here] (https://wapika.github.io/)
 
 ### Optimizations
 
